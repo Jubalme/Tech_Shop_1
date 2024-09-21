@@ -1,6 +1,8 @@
 
 import { Link } from 'react-router-dom';
 import Logo from './Logo';
+import { AiOutlineSearch } from 'react-icons/ai';
+
 
 const Header = () => {
   return (
@@ -8,7 +10,15 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* Left side: Logo and Shop Name */}
         <Logo />
-
+        <div className="flex-grow mx-4 relative">
+          <input 
+            type="text" 
+            placeholder="Search products here..." 
+            className="w-3/4 p-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          {/* The Search Icon */}
+          <AiOutlineSearch className="absolute left-3 top-3 text-gray-500" size={20} />
+        </div>
         {/* Right side: Navigation Links */}
         <nav className="space-x-4">
           <Link 
