@@ -9,6 +9,7 @@ import Infinix from "./phones/Infinix";
 import Motorola from "./phones/Motorola";
 import Samsung from "./phones/Samsung";
 import Techno from "./phones/Techno";
+import Register from "./pages/Register"
 function App() {
   return (
     <Router>
@@ -24,6 +25,8 @@ function App() {
           <Route path="/phones/motorola" element={<Motorola />} />
           <Route path="/phones/samsung" element={<Samsung />} />
           <Route path="/phones/techno" element={<Techno />} />
+          <Route path="/register" element={<Register />} />
+         
         </Routes>
       </div>
     </Router>
