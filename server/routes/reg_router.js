@@ -1,8 +1,9 @@
+// routes/reg_router.js
 const express = require('express');
 const router = express.Router();
 const { registerUser } = require('../controllers/user_reg');
 
-// POST /register route
-router.post('/register', registerUser); // Ensure it matches with your frontend request
+// POST route for user registration
+router.post('/', registerUser);
 
 module.exports = router;

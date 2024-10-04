@@ -1,32 +1,25 @@
-const bcrypt = require('bcrypt');
-const User = require('../models/user_model'); // Import the user model
+// controllers/user_reg.js
+const User = require('../models/user_model');
 
-// Function to handle user registration
 exports.registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
-
-  // Check if user already exists
-  const existingUser = await User.findOne({ email });
-  if (existingUser) {
-    return res.status(400).json({ message: 'User already exists.' });
-  }
+  const { name, email, password } = req.body;
 
   try {
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // Check if the user already exists
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ message: 'User already exists' });
+    }
 
-    // Create the new user
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-    });
+    // Create a new user
+    user = new User({ name, email, password });
 
-    await newUser.save();
+    // Save the user to the database
+    await user.save();
 
-    res.status(201).json({ message: 'User registered successfully!' });
+    return res.status(200).json({ message: 'User registered successfully' });
   } catch (error) {
-    console.error('Error registering user:', error);
-    res.status(500).json({ message: 'Error registering user. Please try again.' });
+    console.error('Registration error:', error.message);
+    return res.status(500).json({ message: 'Server error' });
   }
 };
